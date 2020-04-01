@@ -21,43 +21,43 @@ import javax.persistence.TemporalType;
 import com.oliveira.pontointeligente.api.enums.TipoEnum;
 
 @Entity
-@Table
+@Table(name = "lancamento")
 public class Lancamento implements Serializable {
-	
+
 	private static final long serialVersionUID = -8678143375510435878L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@Temporal(TemporalType.TIMESTAMP) // garante que a data e hora sejam gravados
 	@Column(name = "data", nullable = false)
 	private Date data;
-	
+
 	@Column(name = "descricao", nullable = true)
 	private String descricao;
-	
+
 	@Column(name = "localizacao", nullable = false)
 	private String localizacao;
-	
+
 	@Column(name = "data_criacao", nullable = false)
 	private Date dataCriacao;
-	
+
 	@Column(name = "data_atualizacao", nullable = false)
 	private Date dataAtualizacao;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "tipo")
 	private TipoEnum tipo;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Funcionario funcionario;
-	
+
 	@PreUpdate
 	public void preUpdate() {
 		dataAtualizacao = new Date();
 	}
-	
+
 	@PrePersist
 	public void prePersist() {
 		final Date atual = new Date();
@@ -199,5 +199,5 @@ public class Lancamento implements Serializable {
 				+ ", dataCriacao=" + dataCriacao + ", dataAtualizacao=" + dataAtualizacao + ", tipo=" + tipo
 				+ ", funcionario=" + funcionario + "]";
 	}
-	
+
 }
