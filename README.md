@@ -3,5 +3,3 @@
 
 # Ponto Inteligente
 API do Sistema de Ponto Inteligênte com Java e Spring Boot
-
-# ponto-inteligente-api
